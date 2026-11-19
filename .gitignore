@@ -1,0 +1,7 @@
+bin/
+obj/
+.vs/
+*.user
+*.db
+App_Data/uploads/*
+!App_Data/uploads/.gitkeep

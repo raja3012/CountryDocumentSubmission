@@ -1,0 +1,28 @@
+@baseUrl = https://localhost:7001
+@editor = editor-in
+@reviewer = reviewer-in
+
+### Create submission
+POST {{baseUrl}}/api/submissions
+X-User-Id: {{editor}}
+Content-Type: application/json
+
+{ "title": "Annual country report" }
+
+### List eligible reviewers
+GET {{baseUrl}}/api/users/reviewers
+X-User-Id: {{editor}}
+
+### Upload document (use Swagger or curl multipart field named file)
+# curl -k -H "X-User-Id: editor-in" -F "file=@./sample.pdf" https://localhost:7001/api/submissions/{id}/document
+
+### Submit for review
+POST {{baseUrl}}/api/submissions/{id}/submit
+X-User-Id: {{editor}}
+Content-Type: application/json
+
+{ "reviewerId": "reviewer-in" }
+
+### Reviewer approves
+POST {{baseUrl}}/api/submissions/{id}/approve
+X-User-Id: {{reviewer}}
